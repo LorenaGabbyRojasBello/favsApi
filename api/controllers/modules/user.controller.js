@@ -41,21 +41,27 @@ export const login = async (req, res) => {
   //Validate Hash
   const passToHash = `${password}`;
   bcrypt.compare(passToHash, userDB.password, (err, isPassValid) => {
+
     if (email === userDB.email && isPassValid) {
       //JWT
       jwt.sign(
         { email: userDB.email },
         process.env.ENV_SECRET_KEY,
         (error, token) => {
+
           if (!error) {
+
             res.status(200).json({
-              token,
+              token
             });
+
           } else {
             res.status(403).send();
           }
+
         }
       );
+
     } else {
       res.status(403).send();
     }

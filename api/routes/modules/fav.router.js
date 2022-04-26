@@ -5,10 +5,11 @@ import { favCtrl } from "../../controllers/index.js";
 import { validateToken } from "../../middlewares/index.js";
 
 const { 
-  getAllFavs, 
-  createFav, 
-  getOneFav, 
-  deleteFav } = favCtrl;
+  getAllLists, 
+  createList, 
+  getOneList, 
+  deleteList
+} = favCtrl;
 
 const router = express.Router();
 
@@ -19,9 +20,9 @@ const favRoutes = {
   DELETE: "/favs/delete/:id",
 };
 
-router.get(favRoutes.GET_ALL_FAVS, validateToken, getAllFavs);
-router.get(favRoutes.GET_ONE_FAV, validateToken, getOneFav);
-router.post(favRoutes.CREATE, validateToken, createFav);
-router.delete(favRoutes.DELETE, validateToken, deleteFav);
+router.get(favRoutes.GET_ALL_FAVS, validateToken, getAllLists);
+router.get(favRoutes.GET_ONE_FAV, validateToken, getOneList);
+router.post(favRoutes.CREATE, validateToken, createList);
+router.delete(favRoutes.DELETE, validateToken, deleteList);
 
 export default router;

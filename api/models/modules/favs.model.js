@@ -2,12 +2,11 @@ import mongoose from "mongoose";
 
 // schema Favs
 const schemaFavs = { 
-  ownerId:String,
-  nameLista:String,
+  nameList:String,
   favs: [
     { 
-      titulo:String, 
-      descripcion:String, 
+      title:String, 
+      description:String, 
       link:String 
     }
   ] 

@@ -1,7 +1,7 @@
 import { Fav } from "../../models/index.js";
 
 // Controller get all Favs
-export const getAllFavs = async (req, res) => {
+export const getAllLists = async (req, res) => {
   try {
 
     const favs = await Fav.find();
@@ -16,14 +16,14 @@ export const getAllFavs = async (req, res) => {
 };
 
 // Controller get one fav
-export const getOneFav = async (req, res) => {
+export const getOneList = async (req, res) => {
   const { id: idFav } = req.params;
   const fav = await Fav.findById(idFav);
   res.json(fav);
 };
 
 // Controller create one fav
-export const createFav = async (req, res) => {
+export const createList = async (req, res) => {
   try {
     const fav = new Fav({ ...req.body });
     const newFav = await fav.save();
@@ -34,7 +34,7 @@ export const createFav = async (req, res) => {
 };
 
 // Controller delete by id
-export const deleteFav = async (req, res) => {
+export const deleteList = async (req, res) => {
   const { id: idFav } = req.params;
   try {
     const favToDelete = await Fav.findById(idFav);
@@ -46,15 +46,5 @@ export const deleteFav = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ error });
-  }
-};
-
-export const getFavsByUser = async (req, res) => {
-  try {
-    const { id: idUser } = req.params;
-    const fav = await Fav.find({ ownerId: idUser });
-    res.json(fav);
-  } catch (error) {
-    res.status(403).json({ error });
   }
 };

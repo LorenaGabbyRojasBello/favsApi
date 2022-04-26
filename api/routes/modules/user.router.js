@@ -10,8 +10,8 @@ const {
 const router = express.Router();
 
 const userRoutes = {
-  CREATE: "/users/create",
-  LOGIN: "/users/login",
+  CREATE: "/create",
+  LOGIN: "/login",
 };
 
 router.post(userRoutes.CREATE, createUser);

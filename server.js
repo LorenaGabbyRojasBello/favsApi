@@ -35,8 +35,8 @@ app.get("/", (request, response) => {
   
 });
 
-app.use("/api", userRouter);
-app.use("/auth/local", favRouter);
+app.use("/api",favRouter );
+app.use("/auth/local", userRouter);
 
 // Launch server
 app.listen(5000, () => {
