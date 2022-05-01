@@ -1,7 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import "dotenv/config";
 import path from "path";
 import { fileURLToPath } from "url";
 import {
@@ -9,6 +8,13 @@ import {
   favRouter
 } from "./api/routes/index.js";
 
+//config enviroments 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({
+  path:path.resolve(__dirname, `${process.env.NODE_ENV}.env`)
+})
 
 /**
  * Mongoose
@@ -46,10 +52,3 @@ app.listen(5000, () => {
   console.log("Iniatialized server!!");
 });
 
-//config enviroments 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-dotenv.config({
-  path:path.resolve(__dirname, `${process.env.NODE_ENV}.env`)
-})
