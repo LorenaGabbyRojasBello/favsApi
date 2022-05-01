@@ -27,7 +27,9 @@ describe('Fav tests', () => {
   //URL
   const urlCreateList = "http://localhost:5000/api/favs/create"
   const urlGetAllList = "http://localhost:5000/api/favs/"
-  
+  const urlDeleteOneList = (id) => `http://localhost:5000/api/favs/delete/${id}`
+  const urlGetOneList = (id) => `http://localhost:5000/api/favs/${id}`
+
   //BODY
   const bodyCreateList = {
     nameList: "animales mitologicos",
@@ -71,7 +73,43 @@ describe('Fav tests', () => {
       urlGetAllList,
       headerAuthorization
     )
+
     expect(result.status).toEqual(200);
     expect(result.data).toBeDefined();
   })  
+
+  it('should delete one favList', async ()=> {
+    const allFavList = await axios.get(
+      urlGetAllList,
+      headerAuthorization
+    );
+
+    const idOfFavListToDelete = allFavList.data[0]._id;
+    
+    const result = await axios.delete(
+      urlDeleteOneList(idOfFavListToDelete),
+      headerAuthorization
+    )
+    
+    expect(result.data).toBeDefined();
+    expect(result.status).toBe(200);
+    expect(result.data.deletedCount).toBe(1);
+  })
+
+  it('should get one favList', async ()=> {
+    const allFavList = await axios.get(
+      urlGetAllList,
+      headerAuthorization
+    );
+
+    const idOfFavListToGet = allFavList.data[0]._id;
+    
+    const result = await axios.get(
+      urlGetOneList(idOfFavListToGet),
+      headerAuthorization
+    )
+    
+    expect(result.data).toBeDefined();
+    expect(result.status).toBe(200);
+  })
 })
