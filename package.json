@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "set NODE_ENV=dev&& nodemon server.js",
     "start": "nodemon server.js",
-    "test:watch": "set NODE_ENV=test&& jest -- --watch",
     "test": "set NODE_ENV=test&& jest",
     "server-test":"set NODE_ENV=test&& nodemon server.js"
   },

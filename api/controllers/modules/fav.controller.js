@@ -7,11 +7,9 @@ export const getAllLists = async (req, res) => {
     const favs = await Fav.find();
     if (favs.length === 0) res.status(204).send();
     else res.status(200).json(favs);
-
   } catch (error) {
 
     res.status(500).json({ error });
-
   }
 };
 
