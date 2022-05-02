@@ -5,9 +5,6 @@ import bcrypt from "bcrypt";
 
 export const createUser = async(req, res) => {
   try {
-    console.log(req)
-    const reqBody = req.query ;
-    console.log('reqquery',reqBody)
     
     const {  email, password } = req.body;
 
@@ -29,7 +26,6 @@ export const createUser = async(req, res) => {
 
 
 export const login = async (req, res) => {
-  console.log(req.body)
   const { email, password } = req.body;
   const userDB = await User.findOne({ email });
 

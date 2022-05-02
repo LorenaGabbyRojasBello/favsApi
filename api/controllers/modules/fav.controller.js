@@ -7,19 +7,25 @@ export const getAllLists = async (req, res) => {
     const favs = await Fav.find();
     if (favs.length === 0) res.status(204).send();
     else res.status(200).json(favs);
+  } catch (error) {
+
+    res.status(500).json({ error });
+  }
+};
+
+// Controller get one fav
+export const getOneList = async (req, res) => {
+  try{
+
+    const { id: idFav } = req.params;
+    const fav = await Fav.findById(idFav);
+    res.status(200).json(fav);
 
   } catch (error) {
 
     res.status(500).json({ error });
 
   }
-};
-
-// Controller get one fav
-export const getOneList = async (req, res) => {
-  const { id: idFav } = req.params;
-  const fav = await Fav.findById(idFav);
-  res.json(fav);
 };
 
 // Controller create one fav
