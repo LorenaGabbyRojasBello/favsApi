@@ -59,7 +59,7 @@ Favs Api te brinda la comunicación que proviene desde el backend. Esta se puede
     ]
 } ``` NOTA: Tome este body como una referencia
 
-* Obtener solo una lista de favoritos :
+* Eliminar solo una lista de favoritos :
   * Endpoint ``` http://localhost:5000/api/favs/delete/:id ``` **donde :id** vendría a ser el id de la lista de favoritos que desea eliminar.
   * Body (no tiene body)
 
