@@ -20,6 +20,12 @@ const favRoutes = {
   DELETE: "/favs/delete/:id",
 };
 
+// router.get(favRoutes.GET_ALL_FAVS,  getAllLists);
+// router.get(favRoutes.GET_ONE_FAV,  getOneList);
+// router.post(favRoutes.CREATE,  createList);
+// router.delete(favRoutes.DELETE,  deleteList);
+
+
 router.get(favRoutes.GET_ALL_FAVS, validateToken, getAllLists);
 router.get(favRoutes.GET_ONE_FAV, validateToken, getOneList);
 router.post(favRoutes.CREATE, validateToken, createList);
