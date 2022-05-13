@@ -13,6 +13,6 @@ const schemaFavs = {
 }
 
 // Favs model
-const Fav = mongoose.model("Fav", schemaFavs, "favs");
+const FavModel = mongoose.model("Fav", schemaFavs, "favs");
 
-export default Fav;
+export default FavModel;

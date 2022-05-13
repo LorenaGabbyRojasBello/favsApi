@@ -1,4 +1,4 @@
-import User from "./modules/users.model.js"
-import Fav from "./modules/favs.model.js"
+import UserModel from "./modules/users.model.js"
+import FavModel from "./modules/favs.model.js"
 
-export { User, Fav };
+export { UserModel, FavModel };

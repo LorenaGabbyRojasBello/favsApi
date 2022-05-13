@@ -7,6 +7,6 @@ const schemaUser = {
 };
 
 // User model
-const User = mongoose.model("User", schemaUser, "users");
+const UserModel = mongoose.model("User", schemaUser, "users");
 
-export default User;
+export default UserModel;
