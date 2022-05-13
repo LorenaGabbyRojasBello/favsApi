@@ -67,6 +67,16 @@ describe('Fav tests', () => {
       expect(result.data.favs[1].title).toEqual("Hombrelobo");
       expect(result.data.favs[2].title).toEqual("Centauro");
   })
+
+  it('shouldnt create a favList if you missed the token AUTHENTICATION', async () => {
+    const result = await axios.post(
+      urlCreateList,
+      bodyCreateList
+      ).catch(function (error) {
+        return error.toJSON()
+      });
+      expect(result.status).toEqual(403);
+  })
   
   it('should get all favLists', async () => {
     const result = await axios.get(
@@ -77,6 +87,15 @@ describe('Fav tests', () => {
     expect(result.status).toEqual(200);
     expect(result.data).toBeDefined();
   })  
+
+  it('shouldnt get all favLists if you missed the token AUTHENTICATION', async () => {
+    const result = await axios.get(
+      urlGetAllList
+    ).catch(function (error) {
+        return error.toJSON()
+      });
+      expect(result.status).toEqual(403);
+  })
 
   it('should delete one favList', async ()=> {
     const allFavList = await axios.get(
@@ -96,6 +115,22 @@ describe('Fav tests', () => {
     expect(result.data.deletedCount).toBe(1);
   })
 
+  it('shouldnt delete one favList if you missed the token AUTHENTICATION', async () => {
+    const allFavList = await axios.get(
+      urlGetAllList,
+      headerAuthorization
+    );
+
+    const idOfFavListToDelete = allFavList.data[0]._id;
+    
+    const result = await axios.delete(
+      urlDeleteOneList(idOfFavListToDelete)
+    ).catch(function (error) {
+        return error.toJSON()
+      });
+      expect(result.status).toEqual(403);
+  })
+
   it('should get one favList', async ()=> {
     const allFavList = await axios.get(
       urlGetAllList,
@@ -111,5 +146,21 @@ describe('Fav tests', () => {
     
     expect(result.data).toBeDefined();
     expect(result.status).toBe(200);
+  })
+
+  it('shouldnt get one favList if you missed the token AUTHENTICATION', async () => {
+    const allFavList = await axios.get(
+      urlGetAllList,
+      headerAuthorization
+    );
+
+    const idOfFavListToGet = allFavList.data[0]._id;
+    
+    const result = await axios.get(
+      urlGetOneList(idOfFavListToGet)
+    ).catch(function (error) {
+        return error.toJSON()
+      });
+      expect(result.status).toEqual(403);
   })
 })
